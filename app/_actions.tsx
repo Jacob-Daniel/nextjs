@@ -81,7 +81,7 @@ export async function addSubscriber(data: FormData) {
 	return insertRecord(data);
 }
 
-async function deleteRecord(data: FormData) {
+async function updateRecord(data: FormData) {
 	const email = data.get("email");
 	const date = Math.floor(Date.now() / 1000);
 
@@ -105,5 +105,5 @@ async function deleteRecord(data: FormData) {
 }
 
 export async function Unsubscribe(data: FormData) {
-	return deleteRecord(data);
+	return updateRecord(data);
 }
