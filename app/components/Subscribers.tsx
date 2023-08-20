@@ -7,8 +7,8 @@ interface ISubscribers {
 
 export default async function Subscribers() {
 	async function getSubscribers() {
-		const sql = `SELECT email, id from subscribers`;
-		const res = await dbconnect({ query: sql, values: [] });
+		const sql = `SELECT email, id from subscribers where unsub !=?`;
+		const res = await dbconnect({ query: sql, values: [1] });
 		return res;
 	}
 	const subscribers: ISubscribers[] = await getSubscribers();
