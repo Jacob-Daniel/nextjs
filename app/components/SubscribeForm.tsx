@@ -1,5 +1,5 @@
 "use client";
-import { addSubscriber } from "@/app/_subscribeAction";
+import { addSubscriber } from "@/app/_actions";
 import { useRef, useState } from "react";
 import SubmitButton from "@/app/components/SubmitButton";
 let r = (Math.random() + 1).toString(36).substring(7);
@@ -30,7 +30,7 @@ export default function SubscribeForm() {
 				formRef.current?.reset();
 			} else if (res?.success) {
 				setValidationError(null);
-				setMessage("success");
+				setMessage(res.success);
 				setError(false);
 				formRef.current?.reset();
 			}

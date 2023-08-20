@@ -1,6 +1,5 @@
 import SubscribeForm from "@/app/components/SubscribeForm";
 import Subscribers from "@/app/components/Subscribers";
-import { dbconnect } from "@/lib/dbconnect";
 import Link from "next/link";
 
 export default async function Subscribe() {
