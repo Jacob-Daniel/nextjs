@@ -16,11 +16,7 @@ export default async function Header() {
 								classes="text-xl capitalize lg:text-2xl"
 								key={link}
 								pagename={link}
-								url={
-									link === "home"
-										? process.env.BASE_URL
-										: process.env.BASE_URL + link
-								}
+								url={link === "home" ? "/" : "/" + link}
 							>
 								{link}
 							</NavLink>
