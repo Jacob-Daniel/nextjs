@@ -1,7 +1,9 @@
 "use server";
 import { revalidatePath } from "next/cache";
-import { mailOptions, transporter } from "@/lib/nodemailer";
 import { NextRequest, NextResponse } from "next/server";
+import { mailOptions, transporter } from "@/lib/nodemailer";
+import { dbconnect } from "@/lib/dbconnect";
+
 async function handler(data: FormData) {
 	const date = new Date();
 	const email = data.get("email");
@@ -52,23 +54,56 @@ export async function sendMail(data: FormData) {
 	return res.json();
 }
 
-// export async function Subscribe(request: Request) {
-// 	const body = await request.json();
-// 	const date = Math.floor(Date.now() / 1000);
-// 	try {
-// 		const sql = "select id from subscribers where email = ?";
-// 		const data = await dbconnect({ query: sql, values: [body.email] });
-// 		if (Object.keys(data).length !== 0) {
-// 			return NextResponse.json({ message: "Subscribed!" });
-// 		} else {
-// 			const sql = `insert into subscribers (email, date) values (?,?)`;
-// 			const data = await dbconnect({
-// 				query: sql,
-// 				values: [body.email, date],
-// 			});
-// 			return NextResponse.json({ message: "Subscribed!" });
-// 		}
-// 	} catch (error) {
-// 		return NextResponse.json({ error: "sql error." });
-// 	}
-// }
+async function insertRecord(data: FormData) {
+	const email = data.get("email");
+	const date = Math.floor(Date.now() / 1000);
+
+	try {
+		const sql = "select id from subscribers where email = ?";
+		const data = await dbconnect({ query: sql, values: [email] });
+		if (Object.keys(data).length !== 0) {
+			return { error: "Already exists." };
+		} else {
+			const sql = `insert into subscribers (email, date) values (?,?)`;
+			const data = await dbconnect({
+				query: sql,
+				values: [email, date],
+			});
+			revalidatePath("/subscribe");
+			return { success: "Subscribed!" };
+		}
+	} catch (error) {
+		return { error: error };
+	}
+}
+
+export async function addSubscriber(data: FormData) {
+	return insertRecord(data);
+}
+
+async function deleteRecord(data: FormData) {
+	const email = data.get("email");
+	const date = Math.floor(Date.now() / 1000);
+
+	try {
+		const sql = "select id from subscribers where email = ? and unsub = ?";
+		const data = await dbconnect({ query: sql, values: [email, 0] });
+		if (Object.keys(data).length === 0) {
+			return { error: "Email does not exists or email Pending Removal." };
+		} else {
+			const sql = `update subscribers set unsub = ? where email = ?`;
+			const data = await dbconnect({
+				query: sql,
+				values: [1, email],
+			});
+			revalidatePath("/subscribe");
+			return { success: "UnSubscribed!" };
+		}
+	} catch (error) {
+		return { error: error };
+	}
+}
+
+export async function Unsubscribe(data: FormData) {
+	return deleteRecord(data);
+}

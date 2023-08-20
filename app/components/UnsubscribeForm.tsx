@@ -1,6 +1,6 @@
 "use client";
 import { useState, useRef } from "react";
-import { Unsubscribe } from "@/app/_subscribeAction";
+import { Unsubscribe } from "@/app/_actions";
 import SubmitButton from "@/app/components/SubmitButton";
 let r = (Math.random() + 1).toString(36).substring(7);
 export default function UnsubscribeForm(): JSX.Element {
