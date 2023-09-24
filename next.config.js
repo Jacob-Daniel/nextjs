@@ -1,8 +1,46 @@
+const path = require("path");
+
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+
+const config = {
+	output: "standalone",
+	swcMinify: true,
+	sassOptions: {
+		includePaths: [path.join(__dirname, "app/sass")],
+	},
 	experimental: {
 		serverActions: true,
+		serverComponentsExternalPackages: ["mysql2", "Swiper"],
 	},
+	eslint: {
+		ignoreDuringBuilds: false,
+	},
+	env: {
+		BASE_URL: "http://localhost:3002/",
+		BASE_IMG_URL: "http://control.mg2.org/images/",
+		COMPANY_NAME: "Meanwhile Gardens",
+	},
+	distDir: "build",
+	basePath: "",
+	typescript: {
+		ignoreBuildErrors: true,
+	},
+	images: {
+		remotePatterns: [
+			{
+				protocol: "http",
+				hostname: "control.mg2.org",
+				port: "",
+				pathname: "/images/**",
+			},
+		],
+	},
+	transpilePackages: [
+		"@fullcalendar/common",
+		"@fullcalendar/daygrid",
+		"@fullcalendar/interaction",
+		"@fullcalendar/react",
+		"@fullcalendar/timegrid",
+	],
 };
-
-module.exports = nextConfig;
+module.exports = config;
