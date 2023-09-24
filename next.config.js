@@ -18,7 +18,7 @@ const config = {
 	env: {
 		BASE_URL: "http://localhost:3002/",
 		BASE_IMG_URL: "http://control.mg2.org/images/",
-		COMPANY_NAME: "Meanwhile Gardens",
+		COMPANY_NAME: "Jacob Daniel",
 	},
 	distDir: "build",
 	basePath: "",
@@ -35,12 +35,5 @@ const config = {
 			},
 		],
 	},
-	transpilePackages: [
-		"@fullcalendar/common",
-		"@fullcalendar/daygrid",
-		"@fullcalendar/interaction",
-		"@fullcalendar/react",
-		"@fullcalendar/timegrid",
-	],
 };
 module.exports = config;
