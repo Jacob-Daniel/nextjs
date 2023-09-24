@@ -23,31 +23,11 @@ export async function dbconnect({
 	}
 }
 
-const date: Date = new Date();
-export function formatDate(date: Date) {
-	const monthNames = [
-		"January",
-		"February",
-		"March",
-		"April",
-		"May",
-		"June",
-		"July",
-		"August",
-		"September",
-		"October",
-		"November",
-		"December",
-	];
-	const dayNames = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
-	let hours = date.getHours();
-	let minutes = date.getMinutes();
-	let month = monthNames[date.getMonth()];
-	let day = dayNames[date.getDay()];
-	let ampm = hours >= 12 ? "pm" : "am";
-	hours = hours % 12;
-	hours = hours ? hours : 12; // the hour '0' should be '12'
-	minutes = minutes < 10 ? "0" + minutes : minutes;
-	let strTime = hours + ":" + minutes;
-	return day + " " + date.getDate() + " " + month + " " + date.getFullYear();
+export function strReverse(str: string) {
+	let leng = str.length;
+	let word = "";
+	for (leng; leng > 0; leng--) {
+		word += str[leng - 1];
+	}
+	return word;
 }

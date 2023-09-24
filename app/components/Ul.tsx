@@ -54,6 +54,7 @@ export default function Ul({
 				if (+v.pageparent === 0) {
 					return (
 						<li
+							key={v.id}
 							data-id={v.id}
 							className={`relative flex justify-center text-center uppercase ${
 								click === v.id ? "active" : "notactive"

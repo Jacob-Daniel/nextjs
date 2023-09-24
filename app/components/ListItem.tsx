@@ -12,8 +12,6 @@ interface ILinks {
 }
 
 export default function ListItem({ link, data, click }: ILinks) {
-	// console.log("active:", click);
-
 	let { id, path, title } = link;
 	return (
 		<>
