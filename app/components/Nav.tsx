@@ -17,16 +17,10 @@ interface IPlaces {
 	pageparent: number;
 }
 
-export default function Nav({
-	pages,
-	places,
-}: {
-	pages: IPages;
-	places: IPlaces;
-}) {
+export default function Nav({ pages }: { pages: IPages }) {
 	return (
 		<nav className="col-span-12 grid grid-cols-12 align-middle">
-			<Ul pages={pages} places={places} />
+			<Ul pages={pages} />
 		</nav>
 	);
 }

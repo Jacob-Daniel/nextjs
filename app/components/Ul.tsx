@@ -10,19 +10,10 @@ interface IPages {
 	pageparent: number;
 }
 
-interface IPlaces {
-	id: number;
-	title: string;
-	path: string;
-	pageparent: number;
-}
-
 export default function Ul({
 	pages,
-	places,
 }: {
 	pages: { id: number; pageparent: number; path: string; title: string };
-	places: IPlaces;
 }) {
 	const subpages: {
 		id: number;
