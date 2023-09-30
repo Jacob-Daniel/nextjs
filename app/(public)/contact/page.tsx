@@ -1,4 +1,4 @@
-import ContactForm from "@/app/components/ContactForm";
+import ContactForm from "@components/ContactForm";
 import { dbconnect } from "@/lib/dbconnect";
 
 export default async function Contact() {

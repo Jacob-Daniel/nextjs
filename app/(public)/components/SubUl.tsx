@@ -1,4 +1,4 @@
-import SubLi from "@/app/components/SubLi";
+import SubLi from "@components/SubLi";
 
 interface ILinks {
 	id: number;

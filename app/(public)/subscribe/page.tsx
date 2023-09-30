@@ -1,5 +1,5 @@
-import SubscribeForm from "@/app/components/SubscribeForm";
-import Subscribers from "@/app/components/Subscribers";
+import SubscribeForm from "@components/SubscribeForm";
+import Subscribers from "@components/Subscribers";
 import Link from "next/link";
 
 export default async function Subscribe() {

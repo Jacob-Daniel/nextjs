@@ -1,5 +1,5 @@
 import { dbconnect } from "@/lib/dbconnect";
-import Nav from "@/app/components/Nav";
+import Nav from "@components/Nav";
 
 interface IPages extends Array<IOptions> {}
 

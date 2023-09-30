@@ -10,11 +10,7 @@ interface IOptions {
 }
 export default function Nav({ loggedIn }: { loggedIn: boolean | undefined }) {
 	const state = loggedIn ? "Logout" : "Login";
-	const links: INav = [
-		{ id: 1, title: "Dashboard", pagename: "/admin/dashboard" },
-		// { id: 2, title: "Admin", pagename: "/admin" },
-		{ id: 3, title: state, pagename: "/admin" },
-	];
+	const links: INav = [{ id: 3, title: state, pagename: "/login" }];
 	return (
 		<nav className="flex justify-end align-middle col-span-1 col-start-2">
 			<ul className="flex flex-row gap-3 items-center">
@@ -29,6 +25,9 @@ export default function Nav({ loggedIn }: { loggedIn: boolean | undefined }) {
 						</NavItem>
 					);
 				})}
+				<li>
+					<span className="sm text-gray-400">Jacob Daniel Admin</span>
+				</li>
 			</ul>
 		</nav>
 	);

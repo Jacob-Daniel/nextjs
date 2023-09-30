@@ -1,7 +1,7 @@
 "use client";
 import { addSubscriber } from "@/app/_actions";
 import { useRef, useState } from "react";
-import SubmitButton from "@/app/components/SubmitButton";
+import SubmitButton from "@components/SubmitButton";
 let r = (Math.random() + 1).toString(36).substring(7);
 export default function SubscribeForm() {
 	const [validationError, setValidationError] = useState(null);

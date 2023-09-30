@@ -1,4 +1,4 @@
-import UnsubscribeForm from "@/app/components/UnsubscribeForm";
+import UnsubscribeForm from "@components/UnsubscribeForm";
 import { dbconnect } from "@/lib/dbconnect";
 import Link from "next/link";
 

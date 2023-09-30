@@ -1,8 +1,8 @@
 "use client";
-import SubLi from "@/app/components/SubLi";
-import NavSpan from "@/app/components/NavSpan";
-import SubUl from "@/app/components/SubUl";
-import SubLinksPlaces from "@/app/components/SubLinksPlaces";
+import SubLi from "@components/SubLi";
+import NavSpan from "@components/NavSpan";
+import SubUl from "@components/SubUl";
+import SubLinksPlaces from "@components/SubLinksPlaces";
 import { useState, useEffect } from "react";
 
 interface ILinks {
