@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import Ul from "@/app/components/Ul";
+import Ul from "@components/Ul";
 import img from "@/public/images/logo.jpg";
 
 interface IPages {

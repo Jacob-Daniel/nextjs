@@ -1,7 +1,7 @@
 "use client";
 import { useWindowListener } from "@/lib/clientFunctions";
 import { useState, useEffect } from "react";
-import ListItem from "@/app/components/ListItem";
+import ListItem from "@components/ListItem";
 
 interface IPages {
 	id: number;

@@ -1,9 +1,9 @@
 "use client";
 import { useState, useRef } from "react";
-import { Unsubscribe } from "@/app/_actions";
-import SubmitButton from "@/app/components/SubmitButton";
+import { sendMail } from "@/app/_actions";
+import SubmitButton from "@components/SubmitButton";
 let r = (Math.random() + 1).toString(36).substring(7);
-export default function UnsubscribeForm(): JSX.Element {
+export default function ContactForm(): JSX.Element {
 	const [random, setRandom] = useState(r);
 	const [count, setCount] = useState(0);
 	const [error, setError] = useState(false);
@@ -12,7 +12,7 @@ export default function UnsubscribeForm(): JSX.Element {
 	async function action(formData: FormData) {
 		setCount(count + 1);
 		if (count >= 3) {
-			setMessage("Sorry too many attempts, page refresh required.");
+			setMessage("Sorry too many failed attempts...");
 			setError(true);
 			return 0;
 		}
@@ -23,7 +23,7 @@ export default function UnsubscribeForm(): JSX.Element {
 			setError(true);
 			return false;
 		} else {
-			const res = await Unsubscribe(formData);
+			const res = await sendMail(formData);
 			if (res?.error) {
 				setMessage(`${res.error}`);
 				setError(true);
@@ -37,6 +37,19 @@ export default function UnsubscribeForm(): JSX.Element {
 	return (
 		<div className="mb-5 border-b border-b-gray-300 pb-5">
 			<form ref={formRef} action={action} className="grid grid-cols-1">
+				<label htmlFor="mailformname" className="hidden">
+					Name
+				</label>
+				<input
+					id="mailformname"
+					className="mb-3 border p-3"
+					type="text"
+					placeholder="Name"
+					name="name"
+					minLength={2}
+					maxLength={50}
+					required
+				/>
 				<label htmlFor="mailformemail" className="hidden">
 					Email
 				</label>
@@ -50,6 +63,19 @@ export default function UnsubscribeForm(): JSX.Element {
 					maxLength={50}
 					required
 				/>
+				<label htmlFor="mailformessage" className="hidden">
+					Message
+				</label>
+				<textarea
+					id="mailformessage"
+					className="mb-3 border p-3"
+					placeholder="Message"
+					name="message"
+					rows={5}
+					minLength={3}
+					maxLength={300}
+					required={true}
+				></textarea>
 				<label htmlFor="mailformessage" className="hidden">
 					Human
 				</label>
